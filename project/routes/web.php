@@ -18,6 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home/{role}', 'HomeController@index');
+Route::get('/insert', 'UserController@create');
+
+
 
 
 
