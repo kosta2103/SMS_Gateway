@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) 
         {
-            return redirect('/home/' . Auth::user()->role);
+            return redirect('/home/' . Auth::user()->role_id);
         }
 
         return $next($request);

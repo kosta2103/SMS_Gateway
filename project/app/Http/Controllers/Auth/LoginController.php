@@ -32,7 +32,7 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        $role = Auth::user()->role;
+        $role = Auth::user()->role_id;
         
         return '/home/' . $role;
     }

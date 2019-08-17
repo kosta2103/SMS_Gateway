@@ -25,11 +25,11 @@ class HomeController extends Controller
      */
     public function index($role)
     {
-        if($role == 'student')
+        if($role == 1)
          {
             return view('student');
         } 
-        else if($role == 'professor')
+        else if($role == 2)
         {
             return view('professor');
         }
