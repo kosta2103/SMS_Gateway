@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Student;
+use App\Role;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -26,10 +27,13 @@ class UserController extends Controller
      */
     public function create()
     {
-        //Student::create(['id' => 2, 'index_number' => 561, 'year_enrolled' => 2015, 'mobile_number' => '0698288758', 'verification_code' => '123ds']);
-
+        //Role::create(['name' => 'student']);
+        //Role::create(['name' => 'professor']);        
+        //User::create(['name' => 'Kosta', 'surname' => 'Samardzic', 'email' => 'kosta@gmail.com', 'password' => 'kosta123', 'role_id' => 1]);
+        //User::create(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => 'kosta123', 'role_id' => 2]);
+        //User::create(['name' => 'Marko', 'surname' => 'Samardzic', 'email' => 'marko@gmail.com', 'password' => 'kosta123', 'role_id' => 3]);
+        //Student::create(['id' => 1, 'index_number' => 561, 'year_enrolled' => 2015, 'mobile_number' => '0698288758', 'verification_code' => '123ds']);
         //DB::table('users')->insert(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => 'kosta123', 'role_id' => 2]);
-        User::create(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => 'kosta123', 'role_id' => 3]);
     }
 
     /**

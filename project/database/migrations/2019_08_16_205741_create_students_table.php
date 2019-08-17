@@ -14,7 +14,8 @@ class CreateStudentsTable extends Migration
     public function up()
     {
         Schema::create('students', function (Blueprint $table) {
-            $table->integer('id');
+            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('id');
             $table->integer('index_number');
             $table->integer('year_enrolled');
             $table->string('mobile_number');
@@ -24,6 +25,7 @@ class CreateStudentsTable extends Migration
             $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
             $table->unique(['index_number', 'year_enrolled']);
         });
+
     }
 
     /**

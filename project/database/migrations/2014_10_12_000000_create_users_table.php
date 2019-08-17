@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('surname');
@@ -26,6 +27,7 @@ class CreateUsersTable extends Migration
 
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
+
     }
 
     /**

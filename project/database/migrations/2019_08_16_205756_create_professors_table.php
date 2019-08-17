@@ -14,11 +14,13 @@ class CreateProfessorsTable extends Migration
     public function up()
     {
         Schema::create('professors', function (Blueprint $table) {
-            $table->integer('id');
+            $table->engine = 'InnoDB';
+            $table->unsignedBigInteger('id');
             $table->timestamps();
 
-            $table->primary('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
         });
+
     }
 
     /**
