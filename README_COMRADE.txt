@@ -1,4 +1,4 @@
 https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
 
-prvo migriraj role, pa tek sve ostalo
+run php artisan migrate:refresh --seed
 composer dump-autoload -o (u slucaju da zabodu migracije)
