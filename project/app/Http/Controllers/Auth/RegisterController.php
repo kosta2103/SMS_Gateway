@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'mobile_number' => ['required', 'string', 'regex:/^(3816)\d{8}$/']
+            'mobile_number' => ['required', 'string', 'regex:/^(3816)\d{7,8}$/']
         ], ['mobile_number.regex' => 'The mobile number format is invalid. Example:3816xxxxxxxx']);
     }
 

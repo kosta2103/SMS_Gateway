@@ -22,7 +22,7 @@ class CreateStudentsTable extends Migration
             $table->string('verification_code');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(['index_number', 'year_enrolled']);
         });
 

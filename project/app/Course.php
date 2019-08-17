@@ -9,7 +9,7 @@ use App\Exam;
 class Course extends Model
 {
     protected $fillable = [
-        'name', 'professor_id'
+        'id','name', 'professor_id'
     ];
 
     public function professor()

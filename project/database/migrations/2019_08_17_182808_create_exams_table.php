@@ -17,8 +17,8 @@ class CreateExamsTable extends Migration
             $table->engine = 'InnoDB';
             $table->bigIncrements('id');
             $table->string('examination_period');
-            $table->unsignedBigInteger('grade');
-            $table->enum('passed', ['yes', 'no']);
+            $table->unsignedBigInteger('grade')->nullable();
+            $table->enum('passed', ['yes', 'no'])->nullable();
             $table->unsignedBigInteger('student_id');
             $table->string('course_id');
             $table->timestamps();

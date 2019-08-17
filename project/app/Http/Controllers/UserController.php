@@ -29,12 +29,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //Role::create(['name' => 'student']);
-        //Role::create(['name' => 'professor']);        
-        //User::create(['name' => 'Kosta', 'surname' => 'Samardzic', 'email' => 'kosta@gmail.com', 'password' => 'kosta123', 'role_id' => 1]);
-        //User::create(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => 'kosta123', 'role_id' => 2]);
-        //Student::create(['id' => 1, 'index_number' => 561, 'year_enrolled' => 2015, 'mobile_number' => '0698288758', 'verification_code' => '123ds']);
-        //DB::table('users')->insert(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => 'kosta123', 'role_id' => 2]);        
+        
     }
 
     /**

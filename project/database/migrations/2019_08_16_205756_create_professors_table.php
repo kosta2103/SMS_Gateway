@@ -18,7 +18,7 @@ class CreateProfessorsTable extends Migration
             $table->unsignedBigInteger('id');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
 
     }
