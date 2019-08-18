@@ -1,5 +1,9 @@
 @extends('home')
 
-@section('role')
-    Professor page
+@section('header')
+    Header Professor page
+@endsection
+
+@section('content')
+    Content Professor page
 @endsection

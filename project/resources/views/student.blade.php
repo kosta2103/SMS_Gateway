@@ -1,5 +1,10 @@
 @extends('home')
 
-@section('role')
-    Student page
+@section('header')
+    Header Student page
+@endsection
+
+
+@section('content')
+    Content Student page
 @endsection

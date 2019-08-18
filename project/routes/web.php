@@ -18,10 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home/{role}', 'HomeController@index');
-Route::get('/view', function ()
-{
-    return view('inc.sidebar');
-});
+
 
 
 
