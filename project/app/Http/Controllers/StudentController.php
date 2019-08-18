@@ -73,7 +73,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $student = Student::find($id);
+        return view('students.edit_students')->with('user', [$user, $student]);
     }
 
     /**
@@ -85,7 +87,29 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'surname'=> 'required',
+            'email' => 'required',
+            'index_number' => 'required',
+            'year_enrolled' => 'required',
+            'mobile_number' => 'required',
+        ]);
+
+        //Create post
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+        $user->save();
+
+        $student = Student::find($id);
+        $student->index_number = $request->input('index_number');
+        $student->year_enrolled = $request->input('year_enrolled');
+        $student->mobile_number = $request->input('mobile_number');
+        $student->save();
+
+        return redirect('/students')->with('success','Post Updated');
     }
 
     /**
