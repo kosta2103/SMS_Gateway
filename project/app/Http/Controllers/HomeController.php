@@ -27,11 +27,11 @@ class HomeController extends Controller
     {
         if($role == 1)
          {
-            return view('student');
+            return view('students.home_students');
         } 
         else if($role == 2)
         {
-            return view('professor');
+            return view('professors.home_professors');
         }
     } 
 }

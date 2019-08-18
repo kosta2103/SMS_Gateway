@@ -17,11 +17,16 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) 
+        /*if (Auth::guard($guard)->check()) 
         {
-            return redirect('/home/' . Auth::user()->role_id);
-        }
-
+            if(Auth::user()->role_id == 1){
+                return redirect('/students');
+            }
+            else if(Auth::user()->role_id == 2) {
+                return redirect('/professors');
+            }//return redirect('/home/' . Auth::user()->role_id);
+        }*/
+        
         return $next($request);
     }
 }

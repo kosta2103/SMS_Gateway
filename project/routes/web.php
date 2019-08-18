@@ -16,8 +16,9 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home/{role}', 'HomeController@index');
+Route::resource('students', 'StudentController');
+Route::resource('professors', 'ProfessorController');
+//Route::get('/home/{role}', 'HomeController@index');
 
 
 

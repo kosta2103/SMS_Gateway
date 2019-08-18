@@ -28,13 +28,13 @@ class LoginController extends Controller
      * @var string
      */
     
-    //protected $redirectTo = '/home';
-
+    //protected $redirectTo = '/students';
+    
     protected function redirectTo()
     {
         $role = Auth::user()->role_id;
         
-        return '/home/' . $role;
+        return '/students';
     }
 
     /**

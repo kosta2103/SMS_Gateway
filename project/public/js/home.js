@@ -123,7 +123,7 @@ jQuery(function ($) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\wamp64\www\laravel\SMS_Gateway\sms_gateway\project\resources\js\home.js */"./resources/js/home.js");
+module.exports = __webpack_require__(/*! C:\wamp64\www\e-poslovanje\project\resources\js\home.js */"./resources/js/home.js");
 
 
 /***/ })

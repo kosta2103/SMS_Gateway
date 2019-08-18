@@ -146,7 +146,7 @@
         </div>
         <!-- sidebar-content  -->
         <div class="sidebar-footer">
-            <div class="sidebar-brand">
+            {{-- <div class="sidebar-brand">
                 <a  href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
@@ -157,7 +157,7 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-            </div>  
+            </div>   --}}
         </div>
     </nav> 
 
