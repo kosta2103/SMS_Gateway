@@ -21,6 +21,7 @@
 
     <body>
         <div class="page-wrapper chiller-theme toggled">
+            @include('inc.navbar')
             @include('inc.sidebar')
             <!-- sidebar-wrapper  -->
 
@@ -34,7 +35,7 @@
                     
                                     <div class="card-body">
                                         @yield('content')
-                                        
+
                                         @if (session('status'))
                                             <div class="alert alert-success" role="alert">
                                                 {{ session('status') }}
