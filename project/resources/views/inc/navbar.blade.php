@@ -14,15 +14,25 @@
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+                    <div class="nav-item" style="margin-top: 6px; margin-right: -10px;">
+                        @if (Auth::user()->id == 1)
+                            <a class="nav-link" href="{{ route('students.index') }}"><i class="fa fa-user-circle"></i></a>
+                        @else
+                            <a class="nav-link" href="{{ route('professors.index') }}"><i class="fa fa-user-circle"></i></a>
+                        @endif
+                    </div>
+
                     <li class="nav-item dropdown">
-                        
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="fa fa-user-circle"></i>
                             <b>{{ Auth::user()->surname }} {{Auth::user()->name}}</b> <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="students/{{Auth::user()->id}}/edit"><i class="fa fa-user-o"></i> Edit Profile</a>
+                            @if (Auth::user()->id == 1)
+                                <a class="dropdown-item" href="{{ route('students.edit', ['student' => Auth::user()->id] ) }}"><i class="fa fa-user-o"></i> Edit Profile</a>  
+                            @else
+                                <a class="dropdown-item" href="{{ route('professors.edit', ['professor' => Auth::user()->id] ) }}"><i class="fa fa-user-o"></i> Edit Profile</a>
+                            @endif
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">

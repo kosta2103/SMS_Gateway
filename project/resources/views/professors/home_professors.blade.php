@@ -1,9 +1,10 @@
 @extends('home')
 
 @section('header')
-    Header Professor page
+{{ $user[0]->name}} {{$user[0]->surname}}
 @endsection
 
+
 @section('content')
-    Content Professor page
+    <b>E-mail adresa: </b>{{$user[0]->email}}
 @endsection

@@ -45,11 +45,11 @@ class User extends Authenticatable
         return $this->hasOne('App\Role');
     }
     
-    public function student(){
-        return $this->is_a('App\Student');
-    }
+    // public function student(){
+    //     return $this->is_a('App\Student');
+    // }
 
-    public function professor(){
-        return $this->is_a('App\Professor');
-    }
+    // public function professor(){
+    //     return $this->is_a('App\Professor');
+    // }
 }

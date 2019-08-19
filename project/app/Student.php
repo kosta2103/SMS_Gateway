@@ -17,7 +17,7 @@ class Student extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->is_a('App\User');
     }
 
     public function listensTo()

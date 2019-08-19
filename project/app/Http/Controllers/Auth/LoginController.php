@@ -34,7 +34,14 @@ class LoginController extends Controller
     {
         $role = Auth::user()->role_id;
         
-        return '/students';
+        if($role == '1')
+        {
+            return '/students';
+        }
+        else if($role == '2')
+        {
+            return '/professors';
+        }
     }
 
     /**

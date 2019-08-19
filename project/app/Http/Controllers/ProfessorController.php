@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Professor;
+use App\User;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -13,7 +15,10 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        $user_id = auth()->user()->id;
+        $user = User::find($user_id);
+        $professor = Professor::find($user_id);
+        return view('professors.home_professors')->with('user', [$user, $professor]);
     }
 
     /**
@@ -56,7 +61,9 @@ class ProfessorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $professor = Professor::find($id);
+        return view('professors.edit_professors')->with('user', [$user, $professor]);
     }
 
     /**
@@ -68,7 +75,23 @@ class ProfessorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'surname'=> 'required',
+            'email' => 'required'
+        ]);
+
+        //Create post
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+        $user->save();
+
+        $professor = Professor::find($id);
+        $professor->save();
+
+        return redirect('/professors')->with('success','Post Updated');
     }
 
     /**
