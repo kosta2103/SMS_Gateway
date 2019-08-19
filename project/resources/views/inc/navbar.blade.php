@@ -28,8 +28,9 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            @if (Auth::user()->id == 1)
+                            @if (Auth::user()->role_id == 1)
                                 <a class="dropdown-item" href="{{ route('students.edit', ['student' => Auth::user()->id] ) }}"><i class="fa fa-user-o"></i> Edit Profile</a>  
+                                <a class="dropdown-item" href="{{ route('students.verify', ['student' => Auth::user()->id] ) }}"><i class="fa fa-id-card"></i> Verify Profile</a>  
                             @else
                                 <a class="dropdown-item" href="{{ route('professors.edit', ['professor' => Auth::user()->id] ) }}"><i class="fa fa-user-o"></i> Edit Profile</a>
                             @endif

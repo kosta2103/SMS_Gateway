@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\URL;
 
 class RedirectIfAuthenticated
 {
@@ -17,16 +18,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        /*if (Auth::guard($guard)->check()) 
+        if(Auth::user())
         {
-            if(Auth::user()->role_id == 1){
-                return redirect('/students');
-            }
-            else if(Auth::user()->role_id == 2) {
-                return redirect('/professors');
-            }//return redirect('/home/' . Auth::user()->role_id);
-        }*/
-        
-        return $next($request);
+            return redirect(URL::previous());
+        }
+        return $next($request); 
     }
 }
