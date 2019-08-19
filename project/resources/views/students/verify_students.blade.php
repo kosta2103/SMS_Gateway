@@ -18,7 +18,7 @@
         @if($user[1]->verification_code != '/')
             <h1>Profil je verifikovan</h1>
         @else
-            <form action="{{ route('students.update', ['students' => 1, 'verify' => 1]) }}" method="POST">
+            <form action="{{ route('students.update', ['students' => $user[0]->id, 'verify' => 1]) }}" method="POST">
                 @csrf
                 @method('PUT')
 
