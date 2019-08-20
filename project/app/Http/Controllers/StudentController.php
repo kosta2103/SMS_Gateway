@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use Twilio\Rest\Client;
+use Twilio\Twiml\MessagingResponse;
 
 class StudentController extends Controller
 {
@@ -148,12 +149,18 @@ class StudentController extends Controller
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
             // Where to send a text message (your cell phone?)
-            '+381603393052',
+            '+381698288758',
             array(
                 'from' => $twilio_number,
                 'body' => 'I sent this message in under 10 minutes!'
             )
         );
+    }
+
+    public function reply(){
+        $response = new MessagingResponse();
+        $response->message("The Robots are coming! Head for the hills!");
+        print $response;
     }
 
     /**

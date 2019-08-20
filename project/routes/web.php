@@ -20,6 +20,7 @@ Route::get('students/{student}/verify', 'StudentController@verify')->name('stude
 Route::resource('students', 'StudentController');
 Route::resource('professors', 'ProfessorController');
 Route::get('students/2/send', 'StudentController@send');
+Route::get('students/2/reply', 'StudentController@reply');
 //Route::get('/home/{role}', 'HomeController@index');
 
 
