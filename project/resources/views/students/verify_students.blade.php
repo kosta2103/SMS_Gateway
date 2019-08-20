@@ -1,33 +1,32 @@
 @extends('home')
 
-@section('header')
-    <h1>Verify Profile</h1>
-@endsection
-
 
 @section('content')
-    {{-- {!! Form::open(['action' => ['StudentController@update', $user[0]->id], 'method' => 'POST']) !!}
-        <div class="form-group">
-            {{Form::label('verify','Verify')}}
-            {{Form::text('verify', $user[1]->verification_code, ['class' => 'form-control', 'placeholder' => 'Verification code'])}}
-        </div>
-            {{Form::hidden('_method', 'PUT')}}
-            {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
-    {!! Form::close() !!}
-        <br> --}}
-        @if($user[1]->verification_code != '/')
-            <h1>Profil je verifikovan</h1>
-        @else
-            <form action="{{ route('students.update', ['students' => $user[0]->id, 'verify' => 1]) }}" method="POST">
-                @csrf
-                @method('PUT')
 
-                <div class="form-group">
-                    <label for="verify">Verify</label>
-                    <input name="verification_code" class="form-control" type="text" value="{{ $user[1]->verification_code }}" placeholder="Verification code">
+        @if($user[1]->verification_code != '/')
+            <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Verifikacija naloga</h4>
+                <p>Vaš nalog je verifikovan :)</p>
+            </div>
+        @else
+            <div class="card">
+                <div class="card-header" style="background-color: #17a2b8; color: white;">
+                    Verifikacija naloga
                 </div>
-                <button type="submit" class = "btn btn-primary">Submit</button>
-            </form>
+                <div class="card-body">
+                    <form action="{{ route('students.update', ['students' => $user[0]->id, 'verify' => 1]) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        
+                        <div class="form-group">
+                            <label for="verify">Verifikacija</label>
+                            <input name="verification_code" class="form-control" type="text" value="{{ $user[1]->verification_code }}" placeholder="Verifikacioni kod">
+                        </div>
+                        <button type="submit" class = "btn btn-info">Verifikuj</button>
+                    </form>
+                </div>
+            </div>
+            
         @endif
         
 @endsection
