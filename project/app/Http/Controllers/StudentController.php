@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Student;
+use Twilio\Rest\Client;
+use Twilio\Twiml\MessagingResponse;
 
 class StudentController extends Controller
 {
@@ -130,6 +132,35 @@ class StudentController extends Controller
         $user = User::find($id);
         $student = Student::find($id);
         return view('students.verify_students')->with('user', [$user, $student]);
+    }
+
+    public function send(){
+        //require __DIR__ . '/vendor/autoload.php';
+
+        // Your Account SID and Auth Token from twilio.com/console
+        $account_sid = 'AC30e271323ee5dd59981b2c1eaffe4297';
+        $auth_token = '76b532ace7714aabf961bed3151cdf76';
+        // In production, these should be environment variables. E.g.:
+        // $auth_token = $_ENV["TWILIO_ACCOUNT_SID"]
+
+        // A Twilio number you own with SMS capabilities
+        $twilio_number = "+12173885635";
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create(
+            // Where to send a text message (your cell phone?)
+            '+381698288758',
+            array(
+                'from' => $twilio_number,
+                'body' => 'I sent this message in under 10 minutes!'
+            )
+        );
+    }
+
+    public function reply(){
+        $response = new MessagingResponse();
+        $response->message("The Robots are coming! Head for the hills!");
+        print $response;
     }
 
     /**
