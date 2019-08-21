@@ -17,11 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::get('students/{student}/verify', 'StudentController@verify')->name('students.verify');
+Route::get('students/{student}/subjects', 'ListenToController@subjects')->name('students.subjects');
 Route::resource('students', 'StudentController');
 Route::resource('professors', 'ProfessorController');
 Route::get('students/2/send', 'StudentController@send');
 Route::get('students/2/reply', 'StudentController@reply');
-Route::get('/student/subjects', 'ListenToController@subjects');
+
 //Route::get('/home/{role}', 'HomeController@index');
 
 

@@ -23,7 +23,7 @@
                 <div class="sidebar-submenu">
                 <ul>
                     <li>
-                    <a href="/student/subjects">Upisani predmeti
+                    <a href="{{ route('students.subjects', ['student' => Auth::user()->id]) }}">Upisani predmeti
                     </a>
                     </li>
                     <li>
