@@ -19,6 +19,7 @@ Auth::routes();
 Route::get('students/{student}/verify', 'StudentController@verify')->name('students.verify');
 Route::resource('students', 'StudentController');
 Route::resource('professors', 'ProfessorController');
+Route::get('/student/subjects', 'ListenToController@subjects');
 //Route::get('/home/{role}', 'HomeController@index');
 
 

@@ -18,12 +18,12 @@
             <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-tachometer-alt"></i>
-                <span>Dashboard</span>
+                <span>Ispiti</span>
                 </a>
                 <div class="sidebar-submenu">
                 <ul>
                     <li>
-                    <a href="#">Dashboard 1
+                    <a href="/student/subjects">Upisani predmeti
                     </a>
                     </li>
                     <li>
