@@ -27,10 +27,10 @@
                     </a>
                     </li>
                     <li>
-                    <a href="#">Dashboard 2</a>
+                    <a href="{{ route('students.passedExams', ['student' => Auth::user()->id]) }}">Položeni ispiti</a>
                     </li>
                     <li>
-                    <a href="#">Dashboard 3</a>
+                    <a href="{{ route('students.reportedExams', ['student' => Auth::user()->id]) }}">Prijavljivani ispiti po rokovima</a>
                     </li>
                 </ul>
                 </div>
