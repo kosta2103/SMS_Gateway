@@ -23,7 +23,7 @@ class StudentController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth.student');
+        $this->middleware('auth.student')->except('reply');
     }
 
 
@@ -157,10 +157,11 @@ class StudentController extends Controller
         );
     }
 
-    public function reply(){
+    public function reply()
+    {
         $response = new MessagingResponse();
         $response->message("The Robots are coming! Head for the hills!");
-        print $response;
+        return $response;
     }
 
     /**
