@@ -26,7 +26,7 @@ class ExamController extends Controller
     }
 
     public function reportedExams($id){
-        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('examination_period', 'grade', 'passed', 'name')->where('student_id', $id)->get();
+        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('course_id', 'examination_period', 'grade', 'passed', 'name')->where('student_id', $id)->get();
         return view('students.reported_exams_students')->with('exams', $exams);
     }
 

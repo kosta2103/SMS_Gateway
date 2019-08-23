@@ -18,7 +18,7 @@ class ListenToController extends Controller
 
     public function subjects($id)
     {
-        $subjects = DB::table('listens_tos')->join('students', 'listens_tos.student_id', '=', 'students.id')->join('courses', 'listens_tos.course_id', '=', 'courses.id')->select('courses.id', 'courses.name')->where('listens_tos.student_id', $id)->get();
+        $subjects = DB::table('listens_tos')->join('students', 'listens_tos.student_id', '=', 'students.id')->join('courses', 'listens_tos.course_id', '=', 'courses.id')->get();
         return view('students.listen_to_students')->with('subjects', $subjects);
     }
 }

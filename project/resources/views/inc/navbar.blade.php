@@ -15,7 +15,7 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <div class="nav-item" style="margin-top: 6px; margin-right: -10px;">
-                        @if (Auth::user()->id == 1)
+                        @if (Auth::user()->role_id == 1)
                             <a class="nav-link" href="{{ route('students.index') }}"><i class="fa fa-user-circle"></i></a>
                         @else
                             <a class="nav-link" href="{{ route('professors.index') }}"><i class="fa fa-user-circle"></i></a>
