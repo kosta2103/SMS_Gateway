@@ -100,6 +100,16 @@ class StudentController extends Controller
             $student = Student::find($id);
             $student->verification_code = $request->verification_code;
             $student->save();
+
+            $sid    = "AC30e271323ee5dd59981b2c1eaffe4297";
+            $token  = "76b532ace7714aabf961bed3151cdf76";
+            $twilio = new Client($sid, $token);
+
+            $verification = $twilio->verify->v2->services("VA8a1c8a89b53b5bf6384dfb8962fc8827")
+                                            ->verifications($request->verify)
+                                            ->fetch();
+
+            print($verification->status/*." ".$request->verify*/);
         }
         else
         {
@@ -125,14 +135,27 @@ class StudentController extends Controller
             $student->mobile_number = $request->input('mobile_number');
             $student->save();
         }
-        return redirect('/students')->with('success','Post Updated');
+        //return redirect('/students')->with('success','Post Updated');
     }
 
     public function verify($id)
     {
         $user = User::find($id);
         $student = Student::find($id);
-        return view('students.verify_students')->with('user', [$user, $student]);
+        //return view('students.verify_students')->with('user', [$user, $student]);
+
+        // Find your Account Sid and Auth Token at twilio.com/console
+        // DANGER! This is insecure. See http://twil.io/secure
+        $sid    = "AC30e271323ee5dd59981b2c1eaffe4297";
+        $token  = "76b532ace7714aabf961bed3151cdf76";
+        $twilio = new Client($sid, $token);
+
+        $verification = $twilio->verify->v2->services("VA8a1c8a89b53b5bf6384dfb8962fc8827")
+                                        ->verifications
+                                        ->create("+381698288758", "sms");
+
+        //print($verification->sid);
+        return view('students.verify_students', ['verification'=>$verification->sid, 'user' => [$user, $student]]);
     }
 
     public function send(){

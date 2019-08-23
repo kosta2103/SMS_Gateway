@@ -14,7 +14,7 @@
                     Verifikacija naloga
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('students.update', ['students' => $user[0]->id, 'verify' => 1]) }}" method="POST">
+                    <form action="{{ route('students.update', ['students' => $user[0]->id, 'verify' => $verification]) }}" method="POST">
                         @csrf
                         @method('PUT')
                         
