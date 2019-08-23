@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         //Students
         User::create(['name' => 'Kosta', 'surname' => 'Eric', 'email' => 'kosta@gmail.com', 'password' => Hash::make('kosta123'), 'role_id' => 1]);
         Student::create(['id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 
-        'mobile_number' => '381698288758', 
+        'mobile_number' => '+381698288758', 
         'index_number' => 1, 
         'year_enrolled' => 0000, 
         'verification_code' => '/'
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
         
         User::create(['name' => 'Nikola', 'surname' => 'Samardzic', 'email' => 'nikola@gmail.com', 'password' => Hash::make('nikola123'), 'role_id' => 1]);
         Student::create(['id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 
-        'mobile_number' => '381603393052', 
+        'mobile_number' => '+381603393052', 
         'index_number' => 2, 
         'year_enrolled' => 0000, 
         'verification_code' => '/'
@@ -44,7 +44,7 @@ class DatabaseSeeder extends Seeder
         
         User::create(['name' => 'Nikola', 'surname' => 'Markovic', 'email' => 'markovic@gmail.com', 'password' => Hash::make('markovic123'), 'role_id' => 1]);
         Student::create(['id' => User::where('email', 'markovic@gmail.com')->get()->first()->id, 
-        'mobile_number' => '38166413483', 
+        'mobile_number' => '+38166413483', 
         'index_number' => 3, 
         'year_enrolled' => 0000, 
         'verification_code' => '/'
@@ -52,7 +52,7 @@ class DatabaseSeeder extends Seeder
 
         User::create(['name' => 'Vukasin', 'surname' => 'Paunovic', 'email' => 'vukasin@gmail.com', 'password' => Hash::make('vukasin123'), 'role_id' => 1]);
         Student::create(['id' => User::where('email', 'vukasin@gmail.com')->get()->first()->id, 
-        'mobile_number' => '381638312970', 
+        'mobile_number' => '+381638312970', 
         'index_number' => 4, 
         'year_enrolled' => 0000, 
         'verification_code' => '/'

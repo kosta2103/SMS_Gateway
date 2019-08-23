@@ -42,7 +42,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -53,7 +53,8 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+  
+
     }
 
     /**
@@ -155,13 +156,6 @@ class StudentController extends Controller
                 'body' => 'I sent this message in under 10 minutes!'
             )
         );
-    }
-
-    public function reply()
-    {
-        $response = new MessagingResponse();
-        $response->message("The Robots are coming! Head for the hills!");
-        return $response;
     }
 
     /**

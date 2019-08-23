@@ -11,6 +11,9 @@
 |
 */
 
+use App\Exam;
+use App\Student;
+
 Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
@@ -22,13 +25,11 @@ Route::get('students/{student}/passedExams', 'ExamController@passedExams')->name
 Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->name('students.reportedExams');
 Route::resource('students', 'StudentController');
 Route::resource('professors', 'ProfessorController');
+Route::resource('exam', 'ExamController');
 Route::get('students/2/send', 'StudentController@send');
-Route::post('webhook', 'StudentController@reply');
 
 
 
-
-//Route::get('/home/{role}', 'HomeController@index');
 
 
 

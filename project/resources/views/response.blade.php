@@ -1,0 +1,6 @@
+{{
+    
+    Session('from')
+    Session('body')
+
+}}
