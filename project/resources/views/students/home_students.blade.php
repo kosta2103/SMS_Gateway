@@ -3,34 +3,67 @@
 
 @section('content')
 
-<div class="info-box">
-    <!-- Apply any bg-* class to to the icon to color it -->
-    <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">Likes</span>
-      <span class="info-box-number">93,139</span>
+<div class="row">
+    <div class="col-sm-6 col-xs-12">
+        <div class="info-box bg-aqua">
+            <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Bookmarks</span>
+                <span class="info-box-number">41,410</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                  70% Increase in 30 Days
+                </span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
     </div>
-    <!-- /.info-box-content -->
-  </div>
-  <!-- /.info-box -->
+    <div class="col-sm-6 col-xs-12">
+        <div class="info-box bg-green">
+            <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Likes</span>
+                <span class="info-box-number">41,410</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 70%"></div>
+                </div>
+                <span class="progress-description">
+                  70% Increase in 30 Days
+                </span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div>
 
-  <!-- Apply any bg-* class to to the info-box to color it -->
-<div class="info-box bg-red">
-    <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
-    <div class="info-box-content">
-      <span class="info-box-text">Likes</span>
-      <span class="info-box-number">41,410</span>
-      <!-- The progress section is optional -->
-      <div class="progress">
-        <div class="progress-bar" style="width: 70%"></div>
-      </div>
-      <span class="progress-description">
-        70% Increase in 30 Days
-      </span>
+    <div class="col-sm-6 col-xs-12">
+        <div class="info-box bg-yellow">
+            <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Events</span>
+                <span class="info-box-number">41,410</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 30%"></div>
+                </div>
+                <span class="progress-description">30% Increase in 30 Days</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
     </div>
-    <!-- /.info-box-content -->
-  </div>
-  <!-- /.info-box -->
+
+    <div class="col-sm-6 col-xs-12">
+        <div class="info-box bg-red">
+            <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+            <div class="info-box-content">
+                <span class="info-box-text">Comments</span>
+                <span class="info-box-number">41,410</span>
+                <div class="progress">
+                    <div class="progress-bar" style="width: 0%"></div>
+                </div>
+                <span class="progress-description">0% Increase in 30 Days</span>
+            </div><!-- /.info-box-content -->
+        </div><!-- /.info-box -->
+    </div>
+
+</div>
 
 
 <div class="card">
