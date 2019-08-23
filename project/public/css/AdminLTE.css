@@ -2076,14 +2076,15 @@ a:focus {
   background: #fff;
 }
 .info-box-icon {
+  padding: 20px 0px 0 0;
   border-top-left-radius: 2px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 2px;
   display: block;
   float: left;
-  height: 90px;
-  width: 90px;
+  height: 100px;
+  width: 100px;
   text-align: center;
   font-size: 45px;
   line-height: 90px;
