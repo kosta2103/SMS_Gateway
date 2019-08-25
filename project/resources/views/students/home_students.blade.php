@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-6">
         <div class="info-box bg-aqua">
-            <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
+            <span class="info-box-icon"><i class="fas fa-book"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Upisani predmeti</span>
                 <a href="{{ route('students.subjects', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[2] }}</span></a>
@@ -42,7 +42,7 @@
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
         <div class="info-box bg-green">
-            <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
+            <span class="info-box-icon"><i class="fas fa-pencil-alt"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Polozeni ispiti</span>
                 <a href="{{ route('students.passedExams', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[3] }}</span></a>
@@ -56,7 +56,7 @@
         </div><!-- /.info-box -->
 
         <div class="info-box bg-yellow">
-            <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
+            <span class="info-box-icon"><i class="fas fa-graduation-cap"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Prosek ocena</span>
                 <span class="info-box-number">{{ $user[4] }}</span>
@@ -68,7 +68,7 @@
         </div><!-- /.info-box -->
 
         <div class="info-box bg-red">
-            <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
+            <span class="info-box-icon"><i class="fas fa-exclamation-triangle"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Prijavljeni ispiti koji nisu polozeni</span>
                 <span class="info-box-number">{{ $user[5] }}</span>
