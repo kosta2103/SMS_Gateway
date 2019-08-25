@@ -31,26 +31,26 @@
         <div class="info-box bg-aqua">
             <span class="info-box-icon"><i class="fa fa-bookmark-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Bookmarks</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Upisani predmeti</span>
+                <a href="{{ route('students.subjects', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[2] }}</span></a>
                 <div class="progress">
-                    <div class="progress-bar" style="width: 70%"></div>
+                <div class="progress-bar" style="width: {{($user[2]/6)*100}}%"></div>
                 </div>
                 <span class="progress-description">
-                    70% Increase in 30 Days
+                    {{round(($user[2]/6)*100)}}%
                 </span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
         <div class="info-box bg-green">
             <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Polozeni ispiti</span>
+                <a href="{{ route('students.passedExams', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[3] }}</span></a>
                 <div class="progress">
-                    <div class="progress-bar" style="width: 70%"></div>
+                    <div class="progress-bar" style="width: {{ ($user[3]/$user[2])*100 }}%"></div>
                 </div>
                 <span class="progress-description">
-                    70% Increase in 30 Days
+                    {{ round(($user[3]/$user[2])*100) }}%
                 </span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
@@ -58,24 +58,24 @@
         <div class="info-box bg-yellow">
             <span class="info-box-icon"><i class="fa fa-calendar"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Events</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Prosek ocena</span>
+                <span class="info-box-number">{{ $user[4] }}</span>
                 <div class="progress">
-                    <div class="progress-bar" style="width: 30%"></div>
+                    <div class="progress-bar" style="width: {{ ($user[4]/10)*100 }}%"></div>
                 </div>
-                <span class="progress-description">30% Increase in 30 Days</span>
+                <span class="progress-description"></span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
 
         <div class="info-box bg-red">
             <span class="info-box-icon"><i class="fa fa-comments-o"></i></span>
             <div class="info-box-content">
-                <span class="info-box-text">Comments</span>
-                <span class="info-box-number">41,410</span>
+                <span class="info-box-text">Prijavljeni ispiti koji nisu polozeni</span>
+                <span class="info-box-number">{{ $user[5] }}</span>
                 <div class="progress">
                     <div class="progress-bar" style="width: 0%"></div>
                 </div>
-                <span class="progress-description">0% Increase in 30 Days</span>
+                <span class="progress-description"></span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
     </div>

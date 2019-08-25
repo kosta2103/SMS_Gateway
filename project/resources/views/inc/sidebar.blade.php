@@ -17,15 +17,24 @@
             </li>
             <li class="sidebar-dropdown">
                 <a href="#">
-                <i class="fa fa-tachometer-alt"></i>
+                <i class="fas fa-book"></i>
+                <span>Predmeti</span>
+                </a>
+                <div class="sidebar-submenu">
+                    <ul>
+                        <li>
+                            <a href="{{ route('students.subjects', ['student' => Auth::user()->id]) }}">Upisani predmeti</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="sidebar-dropdown">
+                <a href="#">
+                <i class="fas fa-clipboard"></i>                
                 <span>Ispiti</span>
                 </a>
                 <div class="sidebar-submenu">
                 <ul>
-                    <li>
-                    <a href="{{ route('students.subjects', ['student' => Auth::user()->id]) }}">Upisani predmeti
-                    </a>
-                    </li>
                     <li>
                     <a href="{{ route('students.passedExams', ['student' => Auth::user()->id]) }}">Položeni ispiti</a>
                     </li>
@@ -111,7 +120,7 @@
                 <div class="sidebar-submenu">
                 <ul>
                     <li>
-                    <a href="#">Google maps</a>
+                    <a href="{{ route('google_map', ['student' => Auth::user()->id]) }}">Google maps</a>
                     </li>
                     <li>
                     <a href="#">Open street map</a>

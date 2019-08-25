@@ -6,13 +6,15 @@
             <table class="table table-striped">
                 <tr style="background-color: #17a2b8; color: white;">
                     <th>Ispitni rok</th>
-                    <th>Ocena</th>
                     <th>Naziv predmeta</th>
+                    <th>Datum polaganja</th>
+                    <th>Ocena</th>
                 </tr>
                 @foreach($exams as $exam)
                     <tr>
                         <td>{{$exam->examination_period}}</td>
                         <td>{{$exam->name}}</td>
+                        <td>{{$exam->examination_date}}</td>
                         <td>{{$exam->grade}}</td>
                     </tr>
                 @endforeach

@@ -18,10 +18,8 @@ class ExamController extends Controller
     }
 
     public function passedExams($id)
-    {
-        //$subjects = DB::table('listens_tos')->join('students', 'listens_tos.student_id', '=', 'students.id')->join('courses', 'listens_tos.course_id', '=', 'courses.id')->select('courses.id', 'courses.name')->where('listens_tos.student_id', $id)->get();
-        
-        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('examination_period', 'grade', 'name')->where('student_id', $id)->where('passed','yes')->get();
+    {        
+        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('examination_period', 'grade', 'name', 'exams.created_at as examination_date')->where('student_id', $id)->where('passed','yes')->orderBy('examination_date', 'asc')->get();
         return view('students.passed_exams_students')->with('exams', $exams);
     }
 
@@ -46,7 +44,7 @@ class ExamController extends Controller
         $course = Course::where('id', $body)->get();
 
         $response = new MessagingResponse();
-        $response->message("Uspesno ste prijavili ispit - ".$course[0]->name);
+        $response->message("Uspesno ste prijavili ispit iz predmeta - ".$course[0]->name);
         return $response;
     }
 }

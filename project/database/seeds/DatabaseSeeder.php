@@ -76,13 +76,27 @@ class DatabaseSeeder extends Seeder
         Course::create(['id' => 'BRTSI5200', 'name' => 'Mikroprocesorski sistemi', 'professor_id' => 7]);
 
         //ListensTo
+        ListensTo::create(['student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5200']);
+        ListensTo::create(['student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5300']);
         ListensTo::create(['student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300']);
         ListensTo::create(['student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7200']);
-        ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7301']);
+
+        
         ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5200']);
+        ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5300']);
+        ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300']);
+        ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7200']);
+        ListensTo::create(['student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7301']);
 
         //Exams
-        Exam::create(['examination_period' => 'Avgust', 'grade' => null, 'passed' => null, 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300']);
+        Exam::create(['examination_period' => 'Januar', 'grade' => 5, 'passed' => 'no', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300', 'created_at' => '2015-01-17 09:00:00']);
+        Exam::create(['examination_period' => 'Januar', 'grade' => 9, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5200', 'created_at' => '2015-01-18 09:00:00']);
+        Exam::create(['examination_period' => 'Januar', 'grade' => 10, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5300', 'created_at' => '2015-01-19 15:00:00']);
+        Exam::create(['examination_period' => 'Februar', 'grade' => 8, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300', 'created_at' => '2015-02-13 09:00:00']);
+        Exam::create(['examination_period' => 'Jun', 'grade' => 9, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7200', 'created_at' => '2015-05-27 15:00:00']);
+
+        
+        
         Exam::create(['examination_period' => 'Jul', 'grade' => null, 'passed' => null, 'student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5200']);
         Exam::create(['examination_period' => 'Semptembar', 'grade' => null, 'passed' => null, 'student_id' => User::where('email', 'nikola@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7301']);
     }

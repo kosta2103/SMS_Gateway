@@ -11,21 +11,31 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 })->middleware('guest');
 
 Auth::routes();
-Route::get('students/{student}/verify', 'StudentController@verify')->name('students.verify');
-Route::get('students/{student}/subjects', 'ListenToController@subjects')->name('students.subjects');
-Route::get('students/{student}/passedExams', 'ExamController@passedExams')->name('students.passedExams');
-Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->name('students.reportedExams');
 
 Route::resource('students', 'StudentController');
 Route::resource('professors', 'ProfessorController');
 Route::resource('exam', 'ExamController');
 
-Route::get('students/2/send', 'StudentController@send');
+Route::get('students/{student}/send', 'StudentController@send');
+Route::get('students/{student}/verify', 'StudentController@verify')->name('students.verify');
+Route::post('students/{student}/verifyCaller', 'StudentController@verify_caller')->name('students.verifyCaller');
+
+Route::get('students/{student}/subjects', 'ListenToController@subjects')->name('students.subjects');
+
+Route::get('students/{student}/passedExams', 'ExamController@passedExams')->name('students.passedExams');
+Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->name('students.reportedExams');
+
+Route::get('students/{student}/googleMap', 'SidebarController@google_map')->name('google_map');
+
+
+
+
 
 
 

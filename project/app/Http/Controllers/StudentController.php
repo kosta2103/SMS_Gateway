@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
+use App\Exam;
+use App\ListensTo;
 use Illuminate\Http\Request;
 use App\User;
 use App\Student;
+use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
-use Twilio\Twiml\MessagingResponse;
 
 class StudentController extends Controller
 {
@@ -32,7 +35,19 @@ class StudentController extends Controller
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         $student = Student::find($user_id);
-        return view('students.home_students')->with('user', [$user, $student]);
+        $listens_to_courses = ListensTo::where('student_id', $student->id)->count();
+        $passed_exams = Exam::where('student_id', $student->id)->where('passed', 'yes')->count();
+        $GPA = Exam::where('student_id', $student->id)->where('passed', 'yes')->sum('grade')/Exam::where('student_id', $student->id)->where('passed', 'yes')->count('grade');
+        
+        //
+        $courses = Exam::select('course_id')->where('student_id', $student->id)->where('passed', 'no')->distinct()->get();
+        $reported_not_passed = 0;
+        foreach($courses as $course)
+        {
+            if(Exam::where('course_id', $course->course_id)->where('passed', 'yes')->where('student_id', $student->id)->count() > 0) continue;
+            else $reported_not_passed++;
+        }
+        return view('students.home_students')->with('user', [$user, $student, $listens_to_courses, $passed_exams, $GPA, $reported_not_passed]);
     }
 
     /**
@@ -57,6 +72,38 @@ class StudentController extends Controller
 
     }
 
+    public function verify_caller(Request $request, $id)
+    {
+        if($request->verify)
+        {
+            $this->validate($request,[
+                'verification_code' => 'required'
+            ]);
+    
+            $student = Student::find($id);
+
+            $sid    = "AC3cb8f51261ae6b9b70ade07e9261dda2";
+            $token  = "db1cb3e2e96e87de694a40e2453664a4";
+            $twilio = new Client($sid, $token);
+
+            $verification_check = $twilio->verify->v2->services("VA5fdd65e446afc5fc5500799835eba491")
+                                         ->verificationChecks
+                                         ->create($request->verification_code, // code
+                                                  array("to" => $student->mobile_number)
+                                         );
+
+            if($verification_check->status == 'approved')
+            {
+                $student->verification_code = $request->verification_code;
+                $student->save();
+                return redirect(route('students.verify', ['student' => $student->id]));
+            }
+            else
+            {
+                return redirect(route('students.verify', ['student' => $student->id]))->with('unsuccess','Verifikacioni kod nije ispravan! Pokušajte ponovo!');
+            }
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -90,93 +137,68 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        if($request->verify)
-        {
-            $this->validate($request,[
-                'verification_code' => 'required'
-            ]);
-    
-            //Create post
-            $student = Student::find($id);
-            $student->verification_code = $request->verification_code;
-            $student->save();
+        $this->validate($request,[
+            'name' => 'required',
+            'surname'=> 'required',
+            'email' => 'required',
+            'index_number' => 'required',
+            'year_enrolled' => 'required',
+            'mobile_number' => 'required',
+        ]);
 
-            $sid    = "AC30e271323ee5dd59981b2c1eaffe4297";
-            $token  = "76b532ace7714aabf961bed3151cdf76";
-            $twilio = new Client($sid, $token);
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->surname = $request->input('surname');
+        $user->email = $request->input('email');
+        $user->save();
 
-            $verification = $twilio->verify->v2->services("VA8a1c8a89b53b5bf6384dfb8962fc8827")
-                                            ->verifications($request->verify)
-                                            ->fetch();
-
-            print($verification->status/*." ".$request->verify*/);
-        }
-        else
-        {
-            $this->validate($request,[
-                'name' => 'required',
-                'surname'=> 'required',
-                'email' => 'required',
-                'index_number' => 'required',
-                'year_enrolled' => 'required',
-                'mobile_number' => 'required',
-            ]);
-    
-            //Create post
-            $user = User::find($id);
-            $user->name = $request->input('name');
-            $user->surname = $request->input('surname');
-            $user->email = $request->input('email');
-            $user->save();
-    
-            $student = Student::find($id);
-            $student->index_number = $request->input('index_number');
-            $student->year_enrolled = $request->input('year_enrolled');
-            $student->mobile_number = $request->input('mobile_number');
-            $student->save();
-        }
-        //return redirect('/students')->with('success','Post Updated');
+        $student = Student::find($id);
+        $student->index_number = $request->input('index_number');
+        $student->year_enrolled = $request->input('year_enrolled');
+        $student->mobile_number = $request->input('mobile_number');
+        $student->save();
+        
+        return redirect('/students')->with('success','Post Updated');
     }
 
     public function verify($id)
     {
         $user = User::find($id);
         $student = Student::find($id);
-        //return view('students.verify_students')->with('user', [$user, $student]);
-
-        // Find your Account Sid and Auth Token at twilio.com/console
-        // DANGER! This is insecure. See http://twil.io/secure
-        $sid    = "AC30e271323ee5dd59981b2c1eaffe4297";
-        $token  = "76b532ace7714aabf961bed3151cdf76";
-        $twilio = new Client($sid, $token);
-
-        $verification = $twilio->verify->v2->services("VA8a1c8a89b53b5bf6384dfb8962fc8827")
-                                        ->verifications
-                                        ->create("+381698288758", "sms");
-
-        //print($verification->sid);
-        return view('students.verify_students', ['verification'=>$verification->sid, 'user' => [$user, $student]]);
+        
+        if($student->verification_code == '/' && session()->exists('unsuccess') == false)
+        {
+                $sid    = "AC3cb8f51261ae6b9b70ade07e9261dda2";
+                $token  = "db1cb3e2e96e87de694a40e2453664a4";
+                $twilio = new Client($sid, $token);
+        
+                $verification = $twilio->verify->v2->services("VA5fdd65e446afc5fc5500799835eba491")
+                                                ->verifications
+                                                ->create($student->mobile_number, "sms");
+    
+                return view('students.verify_students', ['verification'=>$verification->sid, 'user' => [$user, $student]]);      
+        }
+        else
+        {
+            return view('students.verify_students', ['user' => [$user, $student]]);
+        }
     }
 
-    public function send(){
-        //require __DIR__ . '/vendor/autoload.php';
+    public function send($id)
+    {
+        $student = Student::find($id);
 
-        // Your Account SID and Auth Token from twilio.com/console
-        $account_sid = 'AC30e271323ee5dd59981b2c1eaffe4297';
-        $auth_token = '76b532ace7714aabf961bed3151cdf76';
-        // In production, these should be environment variables. E.g.:
-        // $auth_token = $_ENV["TWILIO_ACCOUNT_SID"]
+        $account_sid = 'AC3cb8f51261ae6b9b70ade07e9261dda2';
+        $auth_token = 'db1cb3e2e96e87de694a40e2453664a4';
 
-        // A Twilio number you own with SMS capabilities
-        $twilio_number = "+12173885635";
+        $twilio_number = "+12512505457";
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create(
-            // Where to send a text message (your cell phone?)
-            '+381698288758',
+            $student->mobile_number,
             array(
                 'from' => $twilio_number,
-                'body' => 'I sent this message in under 10 minutes!'
+                'body' => 'Test message'
             )
         );
     }
