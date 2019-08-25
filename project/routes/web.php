@@ -31,8 +31,6 @@ Route::get('students/{student}/subjects', 'ListenToController@subjects')->name('
 Route::get('students/{student}/passedExams', 'ExamController@passedExams')->name('students.passedExams');
 Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->name('students.reportedExams');
 
-Route::get('students/{student}/googleMap', 'SidebarController@google_map')->name('google_map');
-
 
 
 

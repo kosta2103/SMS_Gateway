@@ -11,9 +11,4 @@ class SidebarController extends Controller
         $this->middleware('auth.student');
     }
 
-
-    public function google_map()
-    {
-        return view('google_map');
-    }
 }

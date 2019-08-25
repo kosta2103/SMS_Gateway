@@ -3,6 +3,4 @@ https://github.com/jeroennoten/Laravel-AdminLTE?fbclid=IwAR3agqJk3uc9rCpLDTsYiN6
 run php artisan migrate:refresh --seed
 composer dump-autoload -o (u slucaju da zabodu migracije)
 
-//google map
-composer require genealabs/laravel-maps
 

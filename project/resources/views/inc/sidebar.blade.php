@@ -120,10 +120,10 @@
                 <div class="sidebar-submenu">
                 <ul>
                     <li>
-                    <a href="{{ route('google_map', ['student' => Auth::user()->id]) }}">Google maps</a>
+                    <a href="https://www.google.com/maps/place/%D0%A4%D0%B0%D0%BA%D1%83%D0%BB%D1%82%D0%B5%D1%82+%D0%B8%D0%BD%D0%B6%D0%B5%D1%9A%D0%B5%D1%80%D1%81%D0%BA%D0%B8%D1%85+%D0%BD%D0%B0%D1%83%D0%BA%D0%B0+%D0%A3%D0%BD%D0%B8%D0%B2%D0%B5%D1%80%D0%B7%D0%B8%D1%82%D0%B5%D1%82%D0%B0+%D1%83+%D0%9A%D1%80%D0%B0%D0%B3%D1%83%D1%98%D0%B5%D0%B2%D1%86%D1%83/@44.0192328,20.9058266,17.12z/data=!4m13!1m7!3m6!1s0x4757213a54f2bd8b:0xfd57c5227959dfa5!2sSestre+Janji%C4%87,+Kragujevac,+Serbia!3b1!8m2!3d44.0174881!4d20.9063822!3m4!1s0x0:0x9acc30ed949db9b7!8m2!3d44.0189555!4d20.9054321?hl=en-US">Google maps</a>
                     </li>
                     <li>
-                    <a href="#">Open street map</a>
+                    <a href="https://www.google.com/maps/@44.0184894,20.9050765,3a,60y,5.95h,90.48t/data=!3m6!1e1!3m4!1sZuqCEwOSOKxuzyebcKsG4A!2e0!7i13312!8i6656?hl=en-US">Open street map</a>
                     </li>
                 </ul>
                 </div>

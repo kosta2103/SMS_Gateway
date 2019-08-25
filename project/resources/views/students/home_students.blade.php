@@ -32,6 +32,16 @@
             <span class="info-box-icon"><i class="fas fa-book"></i></span>
             <div class="info-box-content">
                 <span class="info-box-text">Upisani predmeti</span>
+                <style> 
+                    a 
+                    {
+                        color: white;
+                    }
+                    a:hover 
+                    {
+                        color: whitesmoke;
+                    }
+                </style>
                 <a href="{{ route('students.subjects', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[2] }}</span></a>
                 <div class="progress">
                 <div class="progress-bar" style="width: {{($user[2]/6)*100}}%"></div>
