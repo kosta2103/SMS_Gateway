@@ -77,8 +77,8 @@ class RegisterController extends Controller
 
         Student::create(['id' => User::where('email', $data['email'])->get()->first()->id, 
         'mobile_number' => $data['mobile_number'], 
-        'index_number' => 0, 
-        'year_enrolled' => 0000, 
+        'index_number' => null, 
+        'year_enrolled' => null, 
         'verification_code' => '/'
         ]);
 

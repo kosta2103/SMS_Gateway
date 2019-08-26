@@ -16,8 +16,8 @@ class CreateStudentsTable extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->unsignedBigInteger('id');
-            $table->integer('index_number');
-            $table->integer('year_enrolled');
+            $table->integer('index_number')->nullable();
+            $table->integer('year_enrolled')->nullable();
             $table->string('mobile_number');
             $table->string('verification_code');
             $table->timestamps();
