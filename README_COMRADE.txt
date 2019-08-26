@@ -4,3 +4,5 @@ run php artisan migrate:refresh --seed
 composer dump-autoload -o (u slucaju da zabodu migracije)
 
 
+//calendar
+https://github.com/maddhatter/laravel-fullcalendar

@@ -115,7 +115,7 @@
             <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-globe"></i>
-                <span>Maps</span>
+                <span>Mape</span>
                 </a>
                 <div class="sidebar-submenu">
                 <ul>
@@ -134,13 +134,13 @@
             <li>
                 <a href="#">
                 <i class="fa fa-book"></i>
-                <span>Documentation</span>
+                <span>Dokumentacija</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('calendar', ['student' => Auth::user()->id]) }}">
                 <i class="fa fa-calendar"></i>
-                <span>Calendar</span>
+                <span>Kalendar</span>
                 </a>
             </li>
             <li>

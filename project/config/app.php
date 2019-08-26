@@ -164,6 +164,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         JeroenNoten\LaravelAdminLte\ServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
@@ -229,7 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacede::class,
         'Html' => Collective\Html\HtmlFacade::class,
-
     ],
 
 ];
