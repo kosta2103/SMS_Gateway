@@ -57,10 +57,23 @@
                 <span class="info-box-text">Polozeni ispiti</span>
                 <a href="{{ route('students.passedExams', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[3] }}</span></a>
                 <div class="progress">
-                    <div class="progress-bar" style="width: {{ ($user[3]/$user[2])*100 }}%"></div>
+                    <div class="progress-bar" style="width: 
+                    @if($user[2] != 0)
+                        {{($user[3]/$user[2])*100 }}%
+                    @else 
+                        {{0}}
+                    @endif
+                    "></div>
                 </div>
                 <span class="progress-description">
-                    {{ round(($user[3]/$user[2])*100) }}%
+                    @if($user[2] != 0)
+                    {{
+                        round(($user[3]/$user[2])*100)
+                    }}
+                    @else
+                        {{0}}
+                    @endif
+                    %
                 </span>
             </div><!-- /.info-box-content -->
         </div><!-- /.info-box -->
