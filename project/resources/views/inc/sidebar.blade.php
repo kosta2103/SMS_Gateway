@@ -44,7 +44,7 @@
                 </ul>
                 </div>
             </li>
-            <li class="sidebar-dropdown">
+            <!-- <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-shopping-cart"></i>
                 <span>E-commerce</span>
@@ -89,7 +89,7 @@
                     </li>
                 </ul>
                 </div>
-            </li>
+            </li> -->
             <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-chart-line"></i>
