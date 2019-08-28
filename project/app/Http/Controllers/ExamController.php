@@ -9,6 +9,7 @@ use Twilio\Rest\Client;
 use Twilio\Twiml\MessagingResponse;
 use App\Student;
 use App\Exam;
+use App\ListensTo;
 
 class ExamController extends Controller
 {
@@ -30,11 +31,40 @@ class ExamController extends Controller
 
     public function store(Request $request)
     {
+        $slusa = false;
+        $polozio = false;
+
         $from = $request->input('From');
         $body = $request->input('Body');
 
         $student = Student::where('mobile_number', $from)->get();
         $student_id = $student[0]->id;
+
+        $listensTo = ListensTo::where('student_id', $student_id)->get();
+        foreach ($listensTo as $listenTo){
+            if($body == $listenTo->course_id){
+                $slusa = true;
+            }
+        }
+
+        $matchThese = ['student_id' => $student_id, 'course_id' => $body];
+        $examChecks = Exam::where($matchThese);
+        foreach($examChecks as $examCheck){
+            if($examCheck->passed == 'yes'){
+                $polozio = true;
+            }
+        }
+
+        if(!$slusa){
+            $response = new MessagingResponse();
+            $response->message("Ne možete prijaviti ispit koji ne slušate!");
+            return $response;
+        } else if($polozio){
+            $response = new MessagingResponse();
+            $response->message("Ne možete prijaviti ispit koji ste položili!");
+            return $response;
+        }
+        
         $exam = new Exam();
         $exam->examination_period = 'Avgust';
         $exam->student_id = $student_id;
