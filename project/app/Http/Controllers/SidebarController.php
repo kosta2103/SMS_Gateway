@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Calendar;
+use App\Course;
+use App\Exam;
+use Illuminate\Support\Facades\Auth;
+use MaddHatter\LaravelFullcalendar\Facades\Calendar;
 
 class SidebarController extends Controller
 {
@@ -14,23 +16,24 @@ class SidebarController extends Controller
 
     public function calendar()
     {
+        $exams = Exam::where('student_id', Auth::user()->id)->get();
+        
         $events = [];
 
-        $events[] = \Calendar::event(
-            'Ispit iz predmeta baze podataka', //event title
-            false, //full day event?
-            '2019-08-26T0800', //start time (you can also use Carbon instead of DateTime)
-            '2019-08-26T1300', //end time (you can also use Carbon instead of DateTime)
-            0 //optionally, you can specify an event ID
-        );
-
-        $events[] = \Calendar::event(
-            "Valentine's Day", //event title
-            true, //full day event?
-            new \DateTime('2015-02-14'), //start time (you can also use Carbon instead of DateTime)
-            new \DateTime('2015-02-14'), //end time (you can also use Carbon instead of DateTime)
-            'stringEventId' //optionally, you can specify an event ID
-        );
+        foreach($exams as $exam)
+        {
+            $events[] = \Calendar::event(
+                'Ispit iz predmeta - ' . Course::select('name')->where('id', $exam->course_id)->first()->name, //event title
+                false, //full day event?
+                strval($exam->created_at), //start time (you can also use Carbon instead of DateTime)
+                date('Y-m-d H:i:s', strtotime($exam->created_at.' +3 hours')), //end time (you can also use Carbon instead of DateTime)
+                0, //optionally, you can specify an event ID
+                [
+                    'color' => '#f05050',
+                ]
+            );
+        }
+        
         
         $calendar = \Calendar::addEvents($events) //add an array with addEvents
             ->setOptions([ //set fullcalendar options

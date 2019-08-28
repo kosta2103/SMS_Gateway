@@ -36,9 +36,11 @@ class ExamController extends Controller
         $student = Student::where('mobile_number', $from)->get();
         $student_id = $student[0]->id;
         $exam = new Exam();
-        $exam->examination_period = 'Januar';
+        $exam->examination_period = 'Avgust';
         $exam->student_id = $student_id;
         $exam->course_id = $body;
+        $exam->created_at = '2019-08-30 15:00:00';
+        $exam->passed = 'no';
         $exam->save();
 
         $course = Course::where('id', $body)->get();
