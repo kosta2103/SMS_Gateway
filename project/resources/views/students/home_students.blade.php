@@ -3,9 +3,9 @@
 
 @section('content')
 
-<div class="row" style="width:100%;">
+<div class="row" style="width:100%; height:100%; margin-left:-30px;">
     <div class="col-md-6">
-        <div class="card" style="width:100%;">
+        <div class="card" style="width:105%;">
             <div class="card-header" style="background-color: #17a2b8; color: white;"><h2>{{ $user[0]->name}} {{$user[0]->surname}}</h2></div>
             <div class="card-body">
                 <div class="row">
@@ -18,7 +18,7 @@
                         <br>
                         <b>Broj telefona: </b>{{$user[1]->mobile_number}}
                         <br>
-                        <b>Verifikacioni kod: </b>{{$user[1]->verification_code}}
+                        <b>Verifikacioni kod: </b><br>{{$user[1]->verification_code}}
                     </div>
                     <div class="col-md-6" style="text-align:center;">
                         <img alt="User Pic" src="https://x1.xingassets.com/assets/frontend_minified/img/users/nobody_m.original.jpg" id="profile-image1" class="img-circle img-responsive rounded" style="width:200px;border-radius: 2.25rem!important;"> 
@@ -41,6 +41,18 @@
                     {
                         color: whitesmoke;
                     }
+                    .info-box.bg-aqua:hover{
+                        box-shadow: 0 0 20px var(--blue);
+                    }
+                    .info-box.bg-green:hover{
+                        box-shadow: 0 0 20px #00a65a;
+                    }
+                    .info-box.bg-yellow:hover{
+                        box-shadow: 0 0 20px #f39c12;
+                    }
+                    .info-box.bg-red:hover{
+                        box-shadow: 0 0 20px #d33724;
+                    }
                 </style>
                 <a href="{{ route('students.subjects', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[2] }}</span></a>
                 <div class="progress">
@@ -57,7 +69,7 @@
                 <span class="info-box-text">Polozeni ispiti</span>
                 <a href="{{ route('students.passedExams', ['student' => $user[0]->id]) }}"><span class="info-box-number">{{ $user[3] }}</span></a>
                 <div class="progress">
-                    <div class="progress-bar" style="width: 
+                     <div class="progress-bar" style="width: 
                     @if($user[2] != 0)
                         {{($user[3]/$user[2])*100 }}%
                     @else 
@@ -66,7 +78,7 @@
                     "></div>
                 </div>
                 <span class="progress-description">
-                    @if($user[2] != 0)
+                 @if($user[2] != 0)
                     {{
                         round(($user[3]/$user[2])*100)
                     }}
