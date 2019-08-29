@@ -77,7 +77,7 @@
                             <td>{{$student->surname}}</td>
                             <td>
                                 {!! Form::open(['action' => ['ProfessorController@updateGrade', Auth()->user()->id, $student->student_id, $student->exam_id], 'method' => 'POST']) !!}
-                                    @if(is_null($student->grade))  
+                                    @if(is_null($student->grade) or $student->grade == 0)  
                                         {{ Form::select('grade', array(0 => 'Neocenjen',6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 0) }}
                                     @elseif($student->grade == 6)
                                             {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 6) }}
