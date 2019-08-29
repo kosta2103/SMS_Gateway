@@ -15,6 +15,7 @@
             <li class="header-menu">
                 <span>General</span>
             </li>
+    
             <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fas fa-book"></i>
@@ -22,9 +23,15 @@
                 </a>
                 <div class="sidebar-submenu">
                     <ul>
+                        @if(Auth::user()->role_id == 1)
                         <li>
                             <a href="{{ route('students.subjects', ['student' => Auth::user()->id]) }}">Upisani predmeti</a>
+                        <li>
+                        @elseif(Auth::user()->role_id == 2)
+                        <li>    
+                            <a href="{{ route('professors.subjects', ['professor' => Auth::user()->id])}}">Predmeti</a>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </li>
@@ -35,12 +42,20 @@
                 </a>
                 <div class="sidebar-submenu">
                 <ul>
+                    @if(Auth::user()->role_id == 1)
                     <li>
-                    <a href="{{ route('students.passedExams', ['student' => Auth::user()->id]) }}">Položeni ispiti</a>
+                        <a href="{{ route('students.passedExams', ['student' => Auth::user()->id]) }}">Položeni ispiti</a>
                     </li>
+                    @elseif(Auth::user()->role_id == 2)
                     <li>
-                    <a href="{{ route('students.reportedExams', ['student' => Auth::user()->id]) }}">Prijavljivani ispiti po rokovima</a>
+                        <a href="#">Upis ocena</a>
                     </li>
+                    @endif
+                    @if(Auth::user()->role_id == 1)    
+                    <li>
+                        <a href="{{ route('students.reportedExams', ['student' => Auth::user()->id]) }}">Prijavljivani ispiti po rokovima</a>
+                    </li>
+                    @endif
                 </ul>
                 </div>
             </li>

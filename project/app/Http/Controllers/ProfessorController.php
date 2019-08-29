@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Professor;
 use App\User;
+use App\Course;
 use Illuminate\Http\Request;
 
 class ProfessorController extends Controller
@@ -113,5 +114,10 @@ class ProfessorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function listOfSubjects($id){
+        $subjects = Course::where('professor_id', $id)->get();
+        return view('professors.courses_professors')->with('subjects', $subjects);
     }
 }

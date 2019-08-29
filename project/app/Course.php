@@ -12,6 +12,8 @@ class Course extends Model
         'id','name', 'professor_id'
     ];
 
+    protected $casts = ['id' => 'string'];
+
     public function professor()
     {
         return $this->hasOne('App\Professor');
