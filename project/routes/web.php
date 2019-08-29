@@ -33,6 +33,7 @@ Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->
 
 Route::get('students/{student}/calendar', 'SidebarController@calendar')->name('calendar');
 Route::get('professors/{professor}/subjects', 'ProfessorController@listOfSubjects')->name('professors.subjects');
+Route::get('professors/{subject}/students', 'ProfessorController@listOfStudentsOfSpecificSubject')->name('professors.listOfStudents');
 
 
 

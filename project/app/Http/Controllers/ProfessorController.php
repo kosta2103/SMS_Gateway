@@ -6,6 +6,7 @@ use App\Professor;
 use App\User;
 use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProfessorController extends Controller
 {
@@ -119,5 +120,13 @@ class ProfessorController extends Controller
     public function listOfSubjects($id){
         $subjects = Course::where('professor_id', $id)->get();
         return view('professors.courses_professors')->with('subjects', $subjects);
+    }
+
+    public function listOfStudentsOfSpecificSubject($id){
+        //$subjects = DB::table('courses')
+        //->join('exams', 'courses.id', '=', 'exams.course_id')
+        //->select(['courses.id', 'courses.name', 'exams.grade', 'exams.examination_period'])->where('courses.id', $id)->where('courses.professor_id',Auth()->user()->id)->get();
+        return '123';
+        //return view('professors.courseStudents_professors');
     }
 }

@@ -29,34 +29,30 @@
                         <li>
                         @elseif(Auth::user()->role_id == 2)
                         <li>    
-                            <a href="{{ route('professors.subjects', ['professor' => Auth::user()->id])}}">Predmeti</a>
+                            <a href="{{ route('professors.subjects', ['professor' => Auth::user()->id])}}">Spisak predmeta</a>
                         </li>
                         @endif
                     </ul>
                 </div>
             </li>
             <li class="sidebar-dropdown">
+                @if(Auth::user()->role_id == 1)
                 <a href="#">
-                <i class="fas fa-clipboard"></i>                
+                <i class="fas fa-clipboard"></i>        
                 <span>Ispiti</span>
                 </a>
+                @endif
                 <div class="sidebar-submenu">
+                @if(Auth::user()->role_id == 1)
                 <ul>
-                    @if(Auth::user()->role_id == 1)
                     <li>
                         <a href="{{ route('students.passedExams', ['student' => Auth::user()->id]) }}">Položeni ispiti</a>
                     </li>
-                    @elseif(Auth::user()->role_id == 2)
-                    <li>
-                        <a href="#">Upis ocena</a>
-                    </li>
-                    @endif
-                    @if(Auth::user()->role_id == 1)    
                     <li>
                         <a href="{{ route('students.reportedExams', ['student' => Auth::user()->id]) }}">Prijavljivani ispiti po rokovima</a>
                     </li>
-                    @endif
                 </ul>
+                @endif
                 </div>
             </li>
             <!-- <li class="sidebar-dropdown">

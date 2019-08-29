@@ -62,8 +62,9 @@
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
                     <tr>
-                        <th >Šifra predmeta</th>
-                        <th >Naziv predmeta</th>
+                        <th>Šifra predmeta</th>
+                        <th>Naziv predmeta</th>
+                        <th>Pregled ocena</th>
                     </tr>
                 </thead>
             </table>
@@ -73,8 +74,9 @@
                   <tbody>
                     @foreach($subjects as $subject)
                         <tr>
-                            <td >{{$subject->id}}</td>
-                            <td >{{$subject->name}}</td>
+                            <td>{{$subject->id}}</td>
+                            <td>{{$subject->name}}</td>
+                            <td><a href="{{ route('professors.listOfStudents', ['subject' => $subject->id]) }}" class="btn btn-info">Prikaži</a></td>
                         </tr>
                     @endforeach
                     </tbody>
