@@ -105,7 +105,7 @@
                 </ul>
                 </div>
             </li> -->
-            <li class="sidebar-dropdown">
+            {{-- <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-chart-line"></i>
                 <span>Charts</span>
@@ -126,7 +126,7 @@
                     </li>
                 </ul>
                 </div>
-            </li>
+            </li> --}}
             <li class="sidebar-dropdown">
                 <a href="#">
                 <i class="fa fa-globe"></i>
@@ -158,12 +158,12 @@
                 <span>Kalendar</span>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#">
                 <i class="fa fa-folder"></i>
                 <span>Examples</span>
                 </a>
-            </li>
+            </li> --}}
             </ul>
         </div>
         <!-- sidebar-menu  -->
