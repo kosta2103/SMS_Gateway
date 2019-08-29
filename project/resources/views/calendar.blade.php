@@ -3,12 +3,15 @@
 @section('content')
     <style>
         body{
-            background: -webkit-linear-gradient(left, #525965, #16c7ff);
-            background: linear-gradient(to right, #25c481, #25b7c4);
+            background: white;
         }
         .fc-today{
-            background: rgba(255,255,255, 0.2) !important;
+            background: rgba(87,94,186,.2) !important;
         }
+        .fc-today:hover{
+            box-shadow: 0 0 20px #575eba !important;
+        }
+        
         
     </style>
     <div class="container">
