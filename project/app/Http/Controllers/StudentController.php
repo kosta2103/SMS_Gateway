@@ -10,6 +10,7 @@ use App\User;
 use App\Student;
 use Illuminate\Support\Facades\DB;
 use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -76,13 +77,23 @@ class StudentController extends Controller
 
     }
 
+    protected function validator(array $data)
+    {   
+        return Validator::make($data, [
+            'verification_code' => ['required', 'string', 'regex:/^\d{6}$/']
+        ], ['verification_code.regex' => 'Verifikacioni kod mora da bude šestocifreni broj!']);
+    }
+
+
+
     public function verify_caller(Request $request, $id)
     {
         if($request->verify)
         {
-            $this->validate($request,[
+            /*$this->validate($request,[
                 'verification_code' => 'required'
-            ]);
+            ]);*/
+            $this->validator($request->all())->validate();
     
             $student = Student::find($id);
 
@@ -169,6 +180,7 @@ class StudentController extends Controller
     {
         $user = User::find($id);
         $student = Student::find($id);
+        
         
         if($student->verification_code == '/' && session()->exists('unsuccess') == false)
         {

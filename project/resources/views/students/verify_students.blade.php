@@ -26,7 +26,12 @@
 
                                 <div class="form-group">
                                     <label for="verify">Verifikacija</label>
-                                    <input name="verification_code" class="form-control" type="text" value="{{ $user[1]->verification_code }}" placeholder="Verifikacioni kod">
+                                    <input name="verification_code" class="form-control  @error('verification_code') is-invalid @enderror" type="text" value="{{ $user[1]->verification_code }}" placeholder="Verifikacioni kod">
+                                    @error('verification_code')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                                 <button type="submit" class = "btn btn-info" style="background: linear-gradient(90deg, rgba(23,162,184,1) 0%, rgba(37,183,196,1) 50%);">Verifikuj</button>
                             </form>
