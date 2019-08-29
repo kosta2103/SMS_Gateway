@@ -125,9 +125,9 @@ class ProfessorController extends Controller
     public function listOfStudentsOfSpecificSubject($professor_id, $subject_id){
         $subjects = DB::table('users')
         ->join('students', 'users.id', '=', 'students.id')
-        ->join('listens_tos', 'students.id', '=', 'listens_tos.student_id')
-        ->join('courses', 'listens_tos.course_id', '=','courses.id')
-        ->join('exams', 'courses.id', '=', 'exams.course_id')
+        //->join('listens_tos', 'students.id', '=', 'listens_tos.student_id')
+        //->join('courses','courses.id', '=', 'listens_tos.course_id')
+        ->join('exams', 'students.id', '=', 'exams.student_id')
         ->select('users.name', 'users.surname','exams.grade', 'exams.passed')->where('exams.course_id', $subject_id)->get();
         return $subjects;
     }
