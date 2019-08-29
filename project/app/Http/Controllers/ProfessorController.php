@@ -122,11 +122,11 @@ class ProfessorController extends Controller
         return view('professors.courses_professors')->with('subjects', $subjects);
     }
 
-    public function listOfStudentsOfSpecificSubject($id){
-        //$subjects = DB::table('courses')
-        //->join('exams', 'courses.id', '=', 'exams.course_id')
-        //->select(['courses.id', 'courses.name', 'exams.grade', 'exams.examination_period'])->where('courses.id', $id)->where('courses.professor_id',Auth()->user()->id)->get();
-        return '123';
+    public function listOfStudentsOfSpecificSubject($professor_id, $subject_id){
+        $subjects = DB::table('courses')
+        ->join('exams', 'courses.id', '=', 'exams.course_id')
+        ->select(['courses.id', 'courses.name', 'exams.grade', 'exams.examination_period'])->where('courses.id', $subject_id)->where('courses.professor_id',Auth()->user()->$professor_id)->get();
+        return $subjects;
         //return view('professors.courseStudents_professors');
     }
 }
