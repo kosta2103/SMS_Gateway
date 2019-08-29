@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Professor;
 use App\User;
 use App\Course;
+use App\Exam;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -123,12 +124,20 @@ class ProfessorController extends Controller
     }
 
     public function listOfStudentsOfSpecificSubject($professor_id, $subject_id){
-        $subjects = DB::table('users')
+        $students = DB::table('users')
         ->join('students', 'users.id', '=', 'students.id')
-        //->join('listens_tos', 'students.id', '=', 'listens_tos.student_id')
-        //->join('courses','courses.id', '=', 'listens_tos.course_id')
         ->join('exams', 'students.id', '=', 'exams.student_id')
-        ->select('users.name', 'users.surname','exams.grade', 'exams.passed')->where('exams.course_id', $subject_id)->get();
-        return $subjects;
+        ->select('exams.id as exam_id','students.id as student_id','users.name', 'users.surname','exams.grade')->where('exams.course_id', $subject_id)->get();
+        return view('professors.courseStudents_professors')->with('students', $students);
+        //return $subjects;
+    }
+
+    public function updateGrade(Request $request, $professorId, $student_id,$examId){
+        $this->validate($request, ['grade' => 'required']);
+        $exam = Exam::find($examId);
+        $exam->grade = $request->input('grade');
+        $exam->passed = 'yes';
+        $exam->save();
+        return redirect()->back();
     }
 }

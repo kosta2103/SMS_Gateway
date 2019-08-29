@@ -76,7 +76,7 @@
                         <tr>
                             <td>{{$subject->id}}</td>
                             <td>{{$subject->name}}</td>
-                            <td><a href="{{ route('professors.listOfStudents', ['professor' => Auth()->user()->id, 'subject' => $subject->id]) }}" class="btn btn-info">Prikaži</a></td>
+                            <td><a href="{{ route('professors.listOfStudents', ['' => Auth()->user()->id,'subject' => $subject->id]) }}" class="btn btn-info">Prikaži</a></td>
                         </tr>
                     @endforeach
                     </tbody>
