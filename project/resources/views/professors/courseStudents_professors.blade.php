@@ -71,28 +71,29 @@
             <div class="tbl-content">
               <table cellpadding="0" cellspacing="0" border="0">
                   <tbody>
+                    <?php $i = 0;?>
                     @foreach($students as $student)
                         <tr>
                             <td>{{$student->name}}</td>
                             <td>{{$student->surname}}</td>
                             <td>
-                                {!! Form::open(['action' => ['ProfessorController@updateGrade', Auth()->user()->id, $student->student_id, $student->exam_id], 'method' => 'POST']) !!}
-                                    @if(is_null($student->grade) or $student->grade == 0)  
-                                        {{ Form::select('grade', array(0 => 'Neocenjen',6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 0) }}
-                                    @elseif($student->grade == 6)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 6) }}
-                                    @elseif($student->grade == 7) 
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 7) }}
-                                    @elseif($student->grade == 8)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 8) }}
-                                    @elseif($student->grade == 9)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 9) }}
-                                    @elseif($student->grade == 10)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 10) }}
-                                    @endif
-                                {{ Form::hidden('_method', 'PUT') }}
-                                {{ Form::submit('promeni', ['class' => 'btn btn-info']) }}
+                                {!! Form::open(['id' => 'GradeForm'.$i,'action' => ['ProfessorController@updateGrade', Auth()->user()->id, $student->student_id, $student->exam_id], 'method' => 'POST']) !!}
+                                @if(is_null($student->grade) or $student->grade == 0)  
+                                        {{ Form::select('grade', array(0 => 'Neocenjen',6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 0, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 6)
+                                        {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 6, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 7) 
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 7, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 8)
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 8, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 9)
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 9, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 10)
+                                        {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 10, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @endif
+                                <?php $i++;?>
                                 {!! Form::close() !!}
+                                
                             </td>
                         </tr>
                     @endforeach
@@ -106,4 +107,8 @@
     </div>
 @endsection
 
-                                        
+<script>
+        function FormSubmit(x){
+            document.getElementById(x).submit();
+        }
+</script>

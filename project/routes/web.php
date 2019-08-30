@@ -34,7 +34,7 @@ Route::get('students/{student}/reportedExams', 'ExamController@reportedExams')->
 Route::get('students/{student}/calendar', 'SidebarController@calendar')->name('calendar');
 Route::get('professors/{professor}/subjects', 'ProfessorController@listOfSubjects')->name('professors.subjects');
 Route::get('professors/{professor}/{subject}/students', 'ProfessorController@listOfStudentsOfSpecificSubject')->name('professors.listOfStudents');
-Route::put('professors/{professor}/{subject}/{exam}', 'ProfessorController@updateGrade')->name('professor.grade');
+Route::post('professors/{professor}/{subject}/{exam}', 'ProfessorController@updateGrade')->name('professor.grade');
 
 
 
