@@ -37,19 +37,19 @@ class StudentController extends Controller
         $user = User::find($user_id);
         $student = Student::find($user_id);
         $listens_to_courses = ListensTo::where('student_id', $student->id)->count();
-        $passed_exams = Exam::where('student_id', $student->id)->where('passed', 'yes')->count();
+        $passed_exams = Exam::where('student_id', $student->id)->where('grade', '>', 0)->count();
 
         //GPA
-        $count = Exam::where('student_id', $student->id)->where('passed', 'yes')->count('grade');
-        $sum = Exam::where('student_id', $student->id)->where('passed', 'yes')->sum('grade');
+        $count = Exam::where('student_id', $student->id)->where('grade', '>', 0)->count('grade');
+        $sum = Exam::where('student_id', $student->id)->where('grade', '>', 0)->sum('grade');
         ($count != 0) ? $GPA = $sum / $count : $GPA = 0;
         
         //
-        $courses = Exam::select('course_id')->where('student_id', $student->id)->where('passed', 'no')->distinct()->get();
+        $courses = Exam::select('course_id')->where('student_id', $student->id)->where('grade','=',0)->distinct()->get();
         $reported_not_passed = 0;
         foreach($courses as $course)
         {
-            if(Exam::where('course_id', $course->course_id)->where('passed', 'yes')->where('student_id', $student->id)->count() > 0) continue;
+            if(Exam::where('course_id', $course->course_id)->where('grade', '>',0)->where('student_id', $student->id)->count() > 0) continue;
             else $reported_not_passed++;
         }
         return view('students.home_students')->with('user', [$user, $student, $listens_to_courses, $passed_exams, $GPA, $reported_not_passed]);
