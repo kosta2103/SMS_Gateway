@@ -75,10 +75,12 @@
                   <tbody>
                     @foreach($exams as $exam)
                         <tr>
-                            <td >{{$exam->examination_period}}</td>
-                            <td >{{$exam->name}}</td>
-                            <td >{{$exam->examination_date}}</td>
-                            <td >{{$exam->grade}}</td>
+                            @if($exam->grade != 0 and !is_null($exam->grade))
+                                <td >{{$exam->examination_period}}</td>
+                                <td >{{$exam->name}}</td>
+                                <td >{{$exam->examination_date}}</td>
+                                <td >{{$exam->grade}}</td>
+                            @endif
                         </tr>
                     @endforeach
                     </tbody>

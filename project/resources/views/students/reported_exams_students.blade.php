@@ -79,7 +79,7 @@
                                 <td>{{$exam->course_id}}</td>
                                 <td>{{$exam->name}}</td>
                                 <td>{{$exam->examination_period}}</td>
-                                @if($exam->passed == 'yes')
+                                @if($exam->passed == 'yes' and $exam->grade != 0)
                                     <td>Položen</td>
                                     <td>{{$exam->grade}}</td>
                                 @else
