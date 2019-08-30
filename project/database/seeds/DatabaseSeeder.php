@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
         Exam::create(['examination_period' => 'Januar', 'grade' => 9, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5200', 'created_at' => '2019-01-18 09:00:00']);
         Exam::create(['examination_period' => 'Januar', 'grade' => 10, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI5300', 'created_at' => '2019-01-19 15:00:00']);
         Exam::create(['examination_period' => 'Februar', 'grade' => 8, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI6300', 'created_at' => '2019-02-13 09:00:00']);
-        Exam::create(['examination_period' => 'Jun', 'grade' => 9, 'passed' => 'yes', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7200', 'created_at' => '2019-06-27 15:00:00']);
+        Exam::create(['examination_period' => 'Jun', 'grade' => null, 'passed' => 'no', 'student_id' => User::where('email', 'kosta@gmail.com')->get()->first()->id, 'course_id' => 'BRTSI7200', 'created_at' => '2019-06-27 15:00:00']);
 
         
         

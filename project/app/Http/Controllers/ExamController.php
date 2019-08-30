@@ -25,7 +25,7 @@ class ExamController extends Controller
     }
 
     public function reportedExams($id){
-        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('course_id', 'examination_period', 'grade', 'passed', 'name')->where('student_id', $id)->get();
+        $exams = DB::table('exams')->join('courses', 'exams.course_id', '=', 'courses.id')->select('course_id', 'examination_period', 'grade', 'passed', 'name', 'exams.created_at as examination_date')->where('student_id', $id)->orderBy('examination_date', 'asc')->get();
         return view('students.reported_exams_students')->with('exams', $exams);
     }
 
@@ -66,10 +66,10 @@ class ExamController extends Controller
         }
         
         $exam = new Exam();
-        $exam->examination_period = 'Septembar';
+        $exam->examination_period = 'Avgust';
         $exam->student_id = $student_id;
         $exam->course_id = $body;
-        $exam->created_at = '2019-09-15 9:00:00';
+        $exam->created_at = '2019-08-31 9:00:00';
         $exam->passed = 'no';
         $exam->save();
 
