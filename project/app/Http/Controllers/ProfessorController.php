@@ -137,7 +137,11 @@ class ProfessorController extends Controller
         //db::table('exams')->where('id', $examId)->update(['grade' => $request->input('grade'),'passed' => 'yes']);
         $exam = Exam::find($examId);
         $exam->grade = $request->input('grade');
-        $exam->passed = 'yes';
+        if($exam->grade == 0){
+            $exam->passed = 'no';
+        }else{
+            $exam->passed = 'yes';
+        }
         $exam->save();
         return redirect()->back();
     }
