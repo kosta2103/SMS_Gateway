@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-                    h1{
+            h1{
             font-size: 30px;
             color: rgba(0,0,0,.65);
             text-transform: uppercase;

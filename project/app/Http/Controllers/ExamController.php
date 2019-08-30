@@ -66,10 +66,10 @@ class ExamController extends Controller
         }
         
         $exam = new Exam();
-        $exam->examination_period = 'Avgust';
+        $exam->examination_period = 'Septembar';
         $exam->student_id = $student_id;
         $exam->course_id = $body;
-        $exam->created_at = '2019-08-30 15:00:00';
+        $exam->created_at = '2019-09-15 9:00:00';
         $exam->passed = 'no';
         $exam->save();
 
