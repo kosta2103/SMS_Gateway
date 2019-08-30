@@ -134,6 +134,7 @@ class ProfessorController extends Controller
 
     public function updateGrade(Request $request, $professorId, $student_id,$examId){
         $this->validate($request, ['grade' => 'required']);
+        //db::table('exams')->where('id', $examId)->update(['grade' => $request->input('grade'),'passed' => 'yes']);
         $exam = Exam::find($examId);
         $exam->grade = $request->input('grade');
         $exam->passed = 'yes';

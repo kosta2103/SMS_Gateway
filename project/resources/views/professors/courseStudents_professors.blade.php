@@ -2,58 +2,58 @@
 
 @section('content')
     <style>
-                    h1{
-            font-size: 30px;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: 300;
-            text-align: center;
-            margin-bottom: 15px;
-            }
-            table{
-            width:100%;
-            table-layout: fixed;
-            }
-            .tbl-header{
-            background-color: rgba(255,255,255,0.3);
-            }
-            .tbl-content{
-            height:300px;
-            overflow-x:auto;
-            margin-top: 0px;
-            border: 1px solid rgba(255,255,255,0.3);
-            }
-            th{
-            padding: 20px 15px;
-            text-align: center;
-            font-weight: 500;
-            font-size: 12px;
-            color: #fff;
-            text-transform: uppercase;
-            }
-            td{
-            padding: 15px;
-            text-align: center;
-            vertical-align:middle;
-            font-weight: 300;
-            font-size: 12px;
-            color: #fff;
-            border-bottom: solid 1px rgba(255,255,255,0.1);
-            }
+        h1{
+        font-size: 30px;
+        color: rgba(0,0,0,.65);
+        text-transform: uppercase;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 15px;
+        }
+        table{
+        width:100%;
+        table-layout: fixed;
+        }
+        .tbl-header{
+            background: linear-gradient(90deg, rgba(23,162,184,1) 0%, rgba(64,82,92,1) 50%, rgba(37,183,196,1) 100%);
+        }
+        .tbl-content{
+        height:auto;
+        overflow-x:auto;
+        margin-top: 0px;
+        border: 1px solid rgba(255,255,255,0.3);
+        box-shadow: 10px 5px 54px 12px rgba(0,0,0,0.38);
+        }
+        th{
+        padding: 20px 15px;
+        text-align: center;
+        font-weight: 500;
+        font-size: 17px;
+        color: #fff;
+        text-transform: uppercase;
+        }
+        td{
+        padding: 15px;
+        text-align: center;
+        vertical-align:middle;
+        font-weight: 300;
+        font-size: 16px;
+        color: #32464d;
+        border-bottom: solid 1px rgba(255,255,255,0.1);
+        }
 
 
 
-            @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
-            body{
-            background: -webkit-linear-gradient(left, #525965, #16c7ff);
-            background: linear-gradient(to right, #25c481, #25b7c4);
-            font-family: 'Roboto', sans-serif;
-            }
-            section{
-            margin: 50px;
-            }
+        @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+        body{
+        background: white;
+        font-family: 'Roboto', sans-serif;
+        }
+        section{
+        margin: 50px;
+        }
 
- </style>
+    </style>
     <section>
     <div class="container" style="text-align:center;">
     <div class="tbl-header">
@@ -71,28 +71,29 @@
             <div class="tbl-content">
               <table cellpadding="0" cellspacing="0" border="0">
                   <tbody>
+                    <?php $i = 0;?>
                     @foreach($students as $student)
                         <tr>
                             <td>{{$student->name}}</td>
                             <td>{{$student->surname}}</td>
                             <td>
-                                {!! Form::open(['action' => ['ProfessorController@updateGrade', Auth()->user()->id, $student->student_id, $student->exam_id], 'method' => 'POST']) !!}
-                                    @if(is_null($student->grade) or $student->grade == 0)  
-                                        {{ Form::select('grade', array(0 => 'Neocenjen',6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 0) }}
-                                    @elseif($student->grade == 6)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 6) }}
-                                    @elseif($student->grade == 7) 
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 7) }}
-                                    @elseif($student->grade == 8)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 8) }}
-                                    @elseif($student->grade == 9)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 9) }}
-                                    @elseif($student->grade == 10)
-                                            {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 10) }}
-                                    @endif
-                                {{ Form::hidden('_method', 'PUT') }}
-                                {{ Form::submit('promeni', ['class' => 'btn btn-info']) }}
+                                {!! Form::open(['id' => 'GradeForm'.$i,'action' => ['ProfessorController@updateGrade', Auth()->user()->id, $student->student_id, $student->exam_id], 'method' => 'POST']) !!}
+                                @if(is_null($student->grade) or $student->grade == 0)  
+                                        {{ Form::select('grade', array(0 => 'Neocenjen',6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 0, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 6)
+                                        {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 6, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 7) 
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 7, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 8)
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 8, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 9)
+                                        {{ Form::select('grade',  array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 9, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @elseif($student->grade == 10)
+                                        {{ Form::select('grade', array(0 => 'Neocenjen', 6 => '6', 7 => '7', 8 => '8', 9 => '9', 10 => '10'), 10, ['class' => 'form-control select2 select2-hidden-accessible', 'onchange'=>'FormSubmit("GradeForm'.$i.'")']) }}
+                                @endif
+                                <?php $i++;?>
                                 {!! Form::close() !!}
+                                
                             </td>
                         </tr>
                     @endforeach
@@ -106,4 +107,8 @@
     </div>
 @endsection
 
-                                        
+<script>
+        function FormSubmit(x){
+            document.getElementById(x).submit();
+        }
+</script>
